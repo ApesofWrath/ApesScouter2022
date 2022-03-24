@@ -17,14 +17,14 @@
         <h3>Autonomous</h3>
 
         <label>Pre Load</label>
-        <select name="preload">
+        <select name="preload" required>
             <option value="" selected disabled hidden>Select Value</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
         </select>
     
         <label>Drove off of tarmac?</label>
-        <select name="taxi">
+        <select name="taxi" required>
             <option value="" selected disabled hidden>Select Value</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
@@ -79,7 +79,7 @@
         </table>
 
         <label>Primary Shooting Position</label>
-        <select name="shooting_spot">
+        <select name="shooting_spot" required>
             <option value="" selected disabled hidden>Select Value</option>
             <option value="N/A">Don&#39;t shoot</option>
             <option value="hub wall">Against Hub</option>
@@ -92,7 +92,7 @@
 
         <h3>Endgame</h3>
         <label>Climb</label>
-        <select name="hangar">
+        <select name="hangar" required>
             <option value="" selected disabled hidden>Select Value</option>
             <option value="None">No climb</option>
             <option value="Low">Low</option>
@@ -102,7 +102,7 @@
         </select>
 
         <label>Result</label>
-        <select name="result">
+        <select name="result" required>
             <option value="" selected disabled hidden>Select Value</option>
             <option value="win">Win</option>
             <option value="lose">Lose</option>
@@ -110,11 +110,11 @@
         </select>
 
         <label>Score</label>
-        <input type="number" min=0 max=999 style="width:5em" name="own_score" placeholder="Own" />
-        <input type="number" min=0 max=999 style="width:5em" name="opp_score" placeholder="Opp" />
+        <input type="number" min=0 max=999 style="width:5em" name="own_score" placeholder="Own" required />
+        <input type="number" min=0 max=999 style="width:5em" name="opp_score" placeholder="Opp" required />
 
         <label>Ranking Points</label>
-        <select name="ranking_points">
+        <select name="ranking_points" required>
             <option value="" selected disabled hidden>Select Value</option>
             <option value="0">0</option>
             <option value="1">1</option>
@@ -137,10 +137,10 @@
         </fieldset>
 
         <label>Bot cargo capacity</label>
-        <input type="number" min=0 max=2 style="width:5em" name="ball_capacity" placeholder="0" />
+        <input type="number" min=0 max=2 style="width:5em" name="ball_capacity" placeholder="0" required />
 
         <label>Driver Skill</label>
-        <select name="driver_skill">
+        <select name="driver_skill" required>
             <option value="" selected disabled hidden>Select Value</option>
             <option value="Amazing">Amazing</option>
             <option value="Good">Good</option>

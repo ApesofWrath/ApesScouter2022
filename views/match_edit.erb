@@ -17,13 +17,13 @@
 
         <h3>Autonomous</h3>
         <label>Pre Load</label>
-        <select name="preload">
+        <select name="preload" required>
             <option value="Yes" <% if @match.preload == "Yes" %> selected<% end %> >Yes</option>
             <option value="No" <% if @match.preload == "No" %> selected<% end %> >No</option>
         </select>
     
         <label>Drove off of tarmac?</label>
-        <select name="taxi">
+        <select name="taxi" required>
             <option value="Yes" <% if @match.taxi == "Yes" %> selected<% end %> >Yes</option>
             <option value="No" <% if @match.taxi == "No" %> selected<% end %> >No</option>
          </select>
@@ -56,7 +56,7 @@
         <input type="number" min=0 max=99 name="dropped_balls" value="<%= @match.dropped_balls %>" />
 
         <label>Primary Shooting Position</label>
-        <select name="shooting_spot">
+        <select name="shooting_spot" required>
             <option value="N/A" <% if @match.shooting_spot == "N/A" %> selected<% end %> >Don&#39;t shoot</option>
             <option value="hub wall" <% if @match.shooting_spot == "hub wall" %> selected<% end %> >Against Hub</option>
             <option value="tarmac" <% if @match.shooting_spot == "tarmac" %> selected<% end %> >On Tarmac</option>
@@ -68,7 +68,7 @@
 
         <h3>Endgame</h3>
         <label>Climb</label>
-        <select name="hangar">
+        <select name="hangar" required>
             <option value="None" <% if @match.hangar == "None" %> selected<% end %>  >No climb</option>
             <option value="Low" <% if @match.hangar == "Low" %> selected<% end %> >Low</option>
             <option value="Mid" <% if @match.hangar == "Mid" %> selected<% end %> >Mid</option>
@@ -77,7 +77,7 @@
         </select>
 
         <label>Result</label>
-        <select name="result">
+        <select name="result" required>
             <option value="win" <% if @match.result == "win" %> selected<% end %>>Win</option>
             <option value="lose" <% if @match.result == "lose" %> selected<% end %>>Lose</option>
             <option value="tie" <% if @match.result == "tie" %> selected<% end %>>Tie</option>
@@ -87,16 +87,16 @@
         <table class="table table-condensed table-bordered" style="width: auto;">
             <tr>
                 <th><b>Own Score:</b></th>
-                <td><input type="number" min=0 max=999 style="width:5em" name="own_score" value="<%= @match.own_score %>" /></td>
+                <td><input type="number" min=0 max=999 style="width:5em" name="own_score" value="<%= @match.own_score %>" required /></td>
             </tr>
             <tr>
                 <th><b>Opp Score:</b></th>
-                <td><input type="number" min=0 max=999 style="width:5em" name="opp_score" value="<%= @match.opp_score %>" /></td>
+                <td><input type="number" min=0 max=999 style="width:5em" name="opp_score" value="<%= @match.opp_score %>" required /></td>
             </tr>
         </table>
 
         <label>Ranking Points</label>
-        <select name="ranking_points">
+        <select name="ranking_points" required>
             <option value="0" <% if @match.ranking_points == 0 %> selected<% end %>>0</option>
             <option value="1" <% if @match.ranking_points == 1 %> selected<% end %>>1</option>
             <option value="2" <% if @match.ranking_points == 2 %> selected<% end %>>2</option>
@@ -118,12 +118,12 @@
         </fieldset>   
 
         <label>Ball Capacity</label>
-        <input type="number" min=0 max=2 style="width:5em" name="ball_capacity" value="<%= @match.ball_capacity %>" />
+        <input type="number" min=0 max=2 style="width:5em" name="ball_capacity" value="<%= @match.ball_capacity %>" required />
 
 
 
         <label>Driver Skill</label>
-        <select name="driver_skill">
+        <select name="driver_skill" required>
             <option value="Amazing" <% if @match.driver_skill == "Amazing" %> selected<% end %>>Amazing</option>
             <option value="Good" <% if @match.driver_skill == "Good" %> selected<% end %>>Good</option>
             <option value="Fair" <% if @match.driver_skill == "Fair" %> selected<% end %>>Fair</option>
@@ -131,7 +131,7 @@
         </select>   
 
         <label>Played Defense</label>
-        <textarea name="played_defense" rows="4"><%= @match.played_defense %></textarea>
+        <textarea name="played_defense" rows="4" required><%= @match.played_defense %></textarea>
 
         <label>Notes</label>
         <textarea name="notes" rows="4"><%= @match.notes %></textarea>
