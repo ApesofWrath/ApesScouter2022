@@ -1,0 +1,148 @@
+<%= erb :header %>
+
+<div class="container">
+    <h2>Enter Team Info (<%= @competition.name %> - <%= @competition.year %>)</h2>
+    <p>Try to keep the conversation flowing as if it were a conversation, not an interrogation. 
+    So don&#39;t feel pressured to ask everything, especially if the person you're talking to doesn't 
+    look like they want to talk that much. Ask questions based on what you see on their robot, you 
+    don&#39;t have to ask everything. EX: A team clearly doesn&#39;t have a climber, so don&#39;t ask them 
+    about their climber.</p>
+    <p>If a team is busy working on their robot, don&#39;t bug them with questions, let them work and 
+    move on to another team.</p> 
+    <hr>
+
+    <form action="/pit_scouting" method="POST" id="myForm" enctype="multipart/form-data">
+        <label>Name</label>
+        <input type="text" name="scouter_name" required placeholder="Name of scouter"/>
+
+        <label>Team Name</label>
+        <input type="text" name="team_name" required />
+
+        <label>Team Number</label>
+        <input type="number" min=1 max=9999 name="team_number" required />
+
+        <label>Drivetrain type?</label>
+        <textarea name="drivetrain_type" rows="4"></textarea>
+
+        <label>Have they done it before?</label>
+        <select name="drivetrain_history">
+            <option value="" selected disabled hidden>Select Value</option>
+            <option value="more than once">More than once</option>
+            <option value="once">Once</option>
+            <option value="no">No</option>
+        </select>
+
+        <label>Do they use cameras?</label>
+        <select name="camera_use">
+            <option value="" selected disabled hidden>Select Value</option>
+            <option value="vision">For vision targets</option>
+            <option value="driving">For driving</option>
+            <option value="no">No</option>
+        </select>
+
+        <label>Shooting capability?</label>
+        <select name="shooting">
+            <option value="" selected disabled hidden>Select Value</option>
+            <option value="high and low">High and low</option>
+            <option value="high only">High only</option>
+            <option value="low only">Low only</option>
+            <option value="none">None</option>
+        </select>
+
+        <label>How does the shooter work?</label>
+        <textarea name="shooter_mech" rows="4" placeholder="Indexing? Adjustable hood? Turret? Spring/Piston shooter? Double shooter?"></textarea>
+
+        <label>Climbing</label>
+        <select name="climbing">
+            <option value="" selected disabled hidden>Select Value</option>
+            <option value="low">Low</option>
+            <option value="mid">Mid</option>
+            <option value="high">High</option>
+            <option value="traversal">Traversal</option>
+            <option vale="None">None</option>
+        </select>
+
+        <label>How does the climber work?</label>
+        <textarea name="climber_mech" rows="4" placeholder="Elevator? Scissor lift? Grappling Hook?"></textarea>
+
+        <label>Total climb time</label>
+        <input type="text" name="climb_time" />
+
+        <fieldset>
+            <label>Cargo Intake</label>
+            <div>
+                <p><input type="checkbox" id="ball_preload" name="intake[]" value="Preload"> Preload</p>
+            </div>
+            <div>
+                <p><input type="checkbox" id="ball_station" name="intake[]" value="Loading Station"> Human Player Station</p>
+            </div>
+            <div>
+                <p><input type="checkbox" id="ball_ground" name="intake[]" value="Ground"> Ground Pickup</p>
+            </div>
+        </fieldset>
+
+        <label>How does the intake and indexer work?</label>
+        <textarea name="intake_mech" rows="4" placeholder="Pistons? Motor controlled arms? Proximity sensors? Limit switches?"></textarea>
+
+        <br>
+
+        <h3>Game Plans</h3>
+
+        <label>What is their autonomous strategy?</label>
+        <textarea name="auton_strategy" rows="4" placeholder="Score (how many)? Just drive off tarmac? Nothing? Auton path?"></textarea>
+
+        <label>What is their teleop strategy?</label>
+        <textarea name="game_strategy" rows="4" placeholder="Shooting Positions, Shooting High or Low, Playing Defense, and Cycle Times if known"></textarea>
+
+        <label>What is their endgame strategy</label>
+        <select name="endgame_strategy">
+            <option value="" selected disabled hidden>Select Value</option>
+            <option value="Keep shooting">Continue to shoot</option>
+            <option value="Defense">Defense</option>
+            <option value="Climbing">Climbing</option>
+        </select>
+
+        <br>
+
+        <h3>Miscellaneous</h3>
+        <p>Please ask these questions, as it will help us understand the team more, but only the picture is super important.</p>
+
+        <label>What are you most proud about on your robot?</label>
+        <textarea name="most_proud" rows="4"></textarea>
+
+        <label>Is there anything that worked surprisingly well or the first time?</label>
+        <textarea name="first_time" rows="4"></textarea>
+
+        <label>What was the most difficult thing for your team to figure out about your robot this year?</label>
+        <textarea name="most_difficult" rows="4"></textarea>
+
+        <label>Have you gone to any other competitions this year?</label>
+        <select name="other_comps">
+            <option value="" selected disabled hidden>Select Value</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <label>How did those competitions go?</label>
+        <textarea name="comp_success" rows="4"></textarea>
+
+        <label>How confident/excited are you about this competition?</label>
+        <textarea name="confidence" rows="4"></textarea>
+
+        <label>Create your own question/Anything else you can think of</label>
+        <textarea name="other" rows="4" placeholder="Include what you asked along with the answer(s)."></textarea>
+
+        <br><br>
+
+        <label>Add Picture of Robot</label>
+        <input type="file" name="file" accept="image/*" >
+
+        <br><br>
+        <input type=hidden name="comp_id" value="<%= @competition.id %>">
+
+        <label><input type="submit" class="btn btn-success btn-large" value="Save Info"></label>
+    </form>
+</div>
+
+<%= erb :footer %>
+

@@ -2,3 +2,6 @@ Gemfile.lock
 *.log
 *.pid
 public/robots/
+mysql
+Pathfile
+.DS_Store

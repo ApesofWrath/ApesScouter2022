@@ -1,0 +1,230 @@
+<%= erb :header %>
+
+<div class="container">
+    <h2>Enter New Match Info (<%= @competition.name %> - <%= @competition.year %>)</h2>
+    <form action="/matches" method="POST" id="myForm" enctype="multipart/form-data">
+        <label>Name</label>
+        <input type="text" name="name" required placeholder="Name of scouter"/>
+
+        <label>Team Number</label>
+        <input type="number" min=1 max=9999 name="team_number" required />
+
+        <label>Match Number</label>
+        <input type="number" min=1 max=200 name="match_number" required placeholder="Qualification Match Number" />
+
+        <br>
+
+        <h3>Autonomous</h3>
+
+        <label>Pre Load</label>
+        <select name="preload">
+            <option value="" selected disabled hidden>Select Value</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    
+        <label>Drove off of tarmac?</label>
+        <select name="taxi">
+            <option value="" selected disabled hidden>Select Value</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+         </select>
+
+        <br>
+        
+        <!-- Auton Scoring -->
+        <label>Scored Pieces DURING THE AUTONOMOUS PERIOD</label>
+        <table class="table table-condensed table-bordered" style="width: auto;">
+            <tr>
+                <td><button type=button class="btn btn-info btn-large" onClick="addOne('auton_upper')">Upper Hub:</button></td>
+                <td><input type="text" value="0" readonly="readonly" style="width:5em" name="auton_upper" id="auton_upper"></td>
+            </tr>
+            <tr>
+                <td><button type=button class="btn btn-warning btn-large" onClick="addOne('auton_lower')">Lower Hub:</button></td>
+                <td><input type="text" value="0" readonly="readonly" style="width:5em" name="auton_lower" id="auton_lower"></td>
+            </tr>
+
+            <tr>
+                <td><button type=button class="btn btn-danger btn-large" onClick="addOne('auton_misses')">Misses:</button></td>
+                <td><input type="text" value="0" readonly="readonly" style="width:5em" name="auton_misses" id="auton_misses"></td>
+            </tr>
+        </table>
+
+        <br>
+
+        <h3>Tele Op</h3>
+
+        <label>Cargo Scored</label>
+        <table class="table table-condensed table-bordered" style="width: auto;">
+            <tr>
+                <td><button type=button class="btn btn-info btn-large" onClick="addOne('tele_upper')">Upper Hub:</button></td>
+                <td><input type=text value="0" readonly="readonly" style="width:5em" name="tele_upper" id="tele_upper"></td>
+            </tr>
+            <tr>
+                <td><button type=button class="btn btn-warning btn-large" onClick="addOne('tele_lower')">Lower Hub:</button></td>
+                <td><input type=text value="0" readonly="readonly" style="width:5em" name="tele_lower" id="tele_lower"></td>
+            </tr>
+            <tr>
+                <td><button type=button class="btn btn-danger btn-large" onClick="addOne('tele_misses')">Misses:</button></td>
+                <td><input type=text value="0" readonly="readonly" style="width:5em" name="tele_misses" id="tele_misses"></td>
+            </tr>
+        </table>
+
+        <label>Dropped Cargo</label>
+        <table class="table table-condensed table-bordered" style="width: auto;">
+            <tr>
+                <td><button type=button class="btn btn-danger btn-large" onClick="addOne('dropped_balls')">Drops:</button></td>
+                <td><input type=text value="0" readonly="readonly" style="width:5em" name="dropped_balls" id="dropped_balls"></td>
+            </tr>
+        </table>
+
+        <label>Primary Shooting Position</label>
+        <select name="shooting_spot">
+            <option value="" selected disabled hidden>Select Value</option>
+            <option value="N/A">Don&#39;t shoot</option>
+            <option value="hub wall">Against Hub</option>
+            <option value="tarmac">Near Trench</option>
+            <option value="against side walls">Against Side Walls</option>
+            <option value="everywhere">Everywhere</option>
+        </select>        
+
+        <br>
+
+        <h3>Endgame</h3>
+        <label>Climb</label>
+        <select name="hangar">
+            <option value="" selected disabled hidden>Select Value</option>
+            <option value="None">No climb</option>
+            <option value="Low">Low</option>
+            <option value="Mid">Mid</option>
+            <option value="High">High</option>
+            <option value="Traverse">Traverse</option>
+        </select>
+
+        <label>Result</label>
+        <select name="result">
+            <option value="" selected disabled hidden>Select Value</option>
+            <option value="win">Win</option>
+            <option value="lose">Lose</option>
+            <option value="tie">Tie</option>
+        </select>
+
+        <label>Score</label>
+        <input type="number" min=0 max=999 style="width:5em" name="own_score" placeholder="Own" />
+        <input type="number" min=0 max=999 style="width:5em" name="opp_score" placeholder="Opp" />
+
+        <label>Ranking Points</label>
+        <select name="ranking_points">
+            <option value="" selected disabled hidden>Select Value</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+
+        <br>
+
+        <h3>Miscellaneous</h3>
+        <fieldset>
+            <label>Cargo Intake</label>
+            <div>
+                <p><input type="checkbox" id="ball_station" name="ball_pickup[]" value="Loading Station"> Human Player Station</p>
+            </div>
+            <div>
+                <p><input type="checkbox" id="ball_ground" name="ball_pickup[]" value="Ground"> Ground Pickup</p>
+            </div>
+        </fieldset>
+
+        <label>Bot cargo capacity</label>
+        <input type="number" min=0 max=2 style="width:5em" name="ball_capacity" placeholder="0" />
+
+        <label>Driver Skill</label>
+        <select name="driver_skill">
+            <option value="" selected disabled hidden>Select Value</option>
+            <option value="Amazing">Amazing</option>
+            <option value="Good">Good</option>
+            <option value="Fair">Fair</option>
+            <option value="Poor">Poor</option>
+        </select>   
+
+        <label>Played Defense</label>
+        <textarea name="played_defense" rows="4" placeholder="Did they play defense? How effectively? Did they stop other bots from shooting, intaking, or climbing?"></textarea>
+
+        <label>Notes</label>
+        <textarea name="notes" rows="4" placeholder="Write anything not covered in above questions such as robot breaking, fouls, yellow cards, etc."></textarea>
+
+        <br><br>
+        <input type=hidden name="comp_id" value="<%= @competition.id %>">
+
+        <label><input type="submit" class="btn btn-success btn-large" value="Save Info"></label>
+    </form>
+
+    <div id="undo_and_hist">
+        <p id="history">Last button press: None</p>
+        <button class="btn btn-danger btn-large" id="undo" onClick="undo()">Undo</button>
+    </div>
+</div>
+
+<!-- JS script for keeping track of button presses -->
+<script type="text/javascript">
+    window.onload = function() {
+          reloadValues();
+    };
+
+    let lastIds = [];
+    let data = {
+        "auton_upper": 0,
+        "auton_lower": 0,
+        "auton_misses": 0,
+        "tele_upper": 0,
+        "tele_lower": 0,
+        "tele_misses": 0,
+        "dropped_balls": 0,
+    };
+    
+    function addOne(id) {
+        lastIds.push(id);
+        data[id]++;
+        document.getElementById(id).value = data[id];
+        document.getElementById("history").innerHTML = "Last button press: " + id.replace(/_/g, ' ');
+    };
+
+    function undo() {
+        if(data[lastIds[lastIds.length - 1]] > 0) {
+            data[lastIds[lastIds.length - 1]]--;
+            document.getElementById(lastIds[lastIds.length - 1]).value = data[lastIds[lastIds.length - 1]];
+        }
+        lastIds.splice(lastIds.length -1, 1);
+
+        if(lastIds.length > 0) {
+            document.getElementById("history").innerHTML = "Last button press: " + lastIds[lastIds.length - 1].replace(/_/g, ' ');
+        }
+        else {
+            document.getElementById("history").innerHTML = "Last button press: None";
+        }
+    };
+
+    function reloadValues() {
+        for (let key in data) {
+            if (data.hasOwnProperty(key)) {
+                data[key] = document.getElementById(key).value;
+            }
+        }
+    };
+</script>
+
+<style>
+    /* Undo button */
+    #undo_and_hist {
+        position: fixed;
+        bottom: 10px;
+        right: 5px;
+        background-color: #ccc;
+        border-radius: 5px;
+        padding: 3px;
+        border: 1px solid #777;
+    }
+</style>
+
+<%= erb :footer %>
