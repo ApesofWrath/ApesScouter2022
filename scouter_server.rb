@@ -177,11 +177,15 @@ module ApesScouter
         end
         
         # Edit Match Data
-        #get '/matches/:id/edit' do
-        #    erb :match_edit
-        #end
+        get '/matches/:id/edit' do
+            erb :match_edit
+        end
 
         post "/matches/:id/edit" do
+            intake_val = ""
+            if(params[:ball_pickup])
+                intake_val = params[:ball_pickup].join(', ')
+            end
             @match = Match[params[:id]]
             @match.team_number = params[:team_number]
             @match.match_number = params[:match_number]
@@ -193,7 +197,6 @@ module ApesScouter
             @match.tele_lower = params[:tele_lower]
             @match.tele_upper = params[:tele_upper]
             @match.tele_misses = params[:tele_misses]
-            @match.control_panel = params[:control_panel]
             @match.dropped_balls = params[:dropped_balls]
             @match.hangar = params[:hangar]
             @match.result = params[:result]
@@ -201,7 +204,7 @@ module ApesScouter
             @match.opp_score = params[:opp_score]
             @match.ranking_points = params[:ranking_points]
             @match.shooting_spot = params[:shooting_spot]
-            @match.ball_pickup = params[:ball_pickup]
+            @match.ball_pickup = intake_val
             @match.ball_capacity = params[:ball_capacity]
             @match.driver_skill = params[:driver_skill]
             @match.played_defense = params[:played_defense]

@@ -1,6 +1,5 @@
 Gemfile.lock
 *.log
 *.pid
-public/robots/
 mysql
 .DS_Store
