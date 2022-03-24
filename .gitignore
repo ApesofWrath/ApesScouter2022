@@ -3,5 +3,4 @@ Gemfile.lock
 *.pid
 public/robots/
 mysql
-Pathfile
 .DS_Store

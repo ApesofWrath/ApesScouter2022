@@ -11,7 +11,7 @@ require "thin"
 pwd = Dir.pwd
 Daemons.run_proc("scouter_server", :monitor => true) do
   Dir.chdir(pwd)  # Fix working directory after daemons sets it to /.
-  require "scouter_server"
+  require_relative "scouter_server"
 
   Thin::Server.start("0.0.0.0", 9000, ApesScouter::Server)
 end
