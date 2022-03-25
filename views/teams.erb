@@ -31,9 +31,9 @@
 
 <script type="text/javascript">
     function setLink(id) {
-        var link = document.getElementById(id);
-        var e = document.getElementById("comp");
-        var compId = e.options[e.selectedIndex].value;
+        let link = document.getElementById(id);
+        let e = document.getElementById("comp");
+        let compId = e.options[e.selectedIndex].value;
         
         if(compId.length > 0) {
             link.setAttribute('href', "/competitions/" + compId + "/teams/" + id);

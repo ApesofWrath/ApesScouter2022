@@ -165,7 +165,8 @@ module ApesScouter
                                  :ball_pickup => intake_val, 
                                  :ball_capacity => params[:ball_capacity],
                                  :driver_skill => params[:driver_skill], 
-                                 :played_defense => params[:played_defense], :notes => params[:notes])
+                                 :played_defense => params[:played_defense], 
+                                 :fouls => params[:fouls], :notes => params[:notes])
        
             redirect "/competitions/#{match.comp_id}"
         end
@@ -208,6 +209,7 @@ module ApesScouter
             @match.ball_capacity = params[:ball_capacity]
             @match.driver_skill = params[:driver_skill]
             @match.played_defense = params[:played_defense]
+            @match.fouls = params[:fouls]
             @match.notes = params[:notes]
             @match.save
 

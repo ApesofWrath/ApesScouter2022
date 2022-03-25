@@ -31,6 +31,7 @@ Sequel.migration do
             String :ball_capacity, :null => false
             String :driver_skill, :null => false
             String :played_defense, :null => false
+            String :fouls, :null => false
             Text :notes
         end
     end
