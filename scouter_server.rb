@@ -153,7 +153,7 @@ module ApesScouter
 
             match = Match.create(:comp_id => params[:comp_id], :team_number => params[:team_number], 
                                  :match_number => params[:match_number], 
-                                 :name => params[:name], :preload => params[:preload], 
+                                 :name => params[:name], 
                                  :taxi => params[:taxi], :auton_lower => params[:auton_lower],
                                  :auton_upper => params[:auton_upper], :auton_misses => params[:auton_misses],
                                  :tele_lower => params[:tele_lower], :tele_upper => params[:tele_upper],
@@ -190,7 +190,6 @@ module ApesScouter
             @match = Match[params[:id]]
             @match.team_number = params[:team_number]
             @match.match_number = params[:match_number]
-            @match.preload = params[:preload]
             @match.taxi = params[:taxi]
             @match.auton_lower = params[:auton_lower]
             @match.auton_upper = params[:auton_upper]

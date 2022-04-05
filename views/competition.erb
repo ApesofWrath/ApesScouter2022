@@ -9,7 +9,9 @@
             <i class="icon-white icon-plus-sign"></i> Pit Scout
         </a>    
     </div>
-    <h3><b><%= @competition.name %> <%= @competition.year %> - All Match Data</b></h3
+    <h3><b><%= @competition.name %> <%= @competition.year %> - All Match Data</b></h3>
+    <p>Note: click the column headings to sort the columns.</p>
+    <br>
 
     <% if @match_sort.to_s == "team_number" || @match_sort.to_s == "match_number" %>
         <%= erb :data_list, :locals => { :matches => Match.where(:comp_id => @competition.id).order(Sequel.asc(@match_sort)) } %>

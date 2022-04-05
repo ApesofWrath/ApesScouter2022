@@ -3,8 +3,14 @@
         <table class="table table-condensed table-bordered">
             <thead>
                 <tr>
-                    <% Match.columns[2..-1].each do |col| %>
-                        <th scope="col"><a href="?sort=<%= col %>"><%= col.to_s.gsub('_', '&nbsp;').split.map(&:capitalize).join(' ') %></a></th>
+                    <% Match.columns[2..-1].each.with_index do |col, index| %>
+                        <% if col.to_s == "team_number" %>
+                            <th class="sticky-col" scope="col"><a href="?sort=<%= col %>"><%= col.to_s.gsub('_', '&nbsp;').split.map(&:capitalize).join(' ') %></a></th>
+                        <% elsif col.to_s == "match_number" %>
+                            <th class="sticky-col-2" scope="col"><a href="?sort=<%= col %>"><%= col.to_s.gsub('_', '&nbsp;').split.map(&:capitalize).join(' ') %></a></th>
+                        <% else %>
+                            <th scope="col"><a href="?sort=<%= col %>"><%= col.to_s.gsub('_', '&nbsp;').split.map(&:capitalize).join(' ') %></a></th>
+                        <% end %>
                     <% end %>
                 </tr>
             </thead>
@@ -16,7 +22,9 @@
                                 <% val.each do |data| %>
                                     <% Match.select(data.first).where(:id => match.id).each do |v| %>
                                         <% if index >= 2 && col.to_s == "team_number" %>
-                                            <th><a href="/competitions/<%= match.comp_id %>/teams/<%= match.team_number %>"><%= v[data.first] %></a></td>
+                                            <td class="sticky-col"><a href="/competitions/<%= match.comp_id %>/teams/<%= match.team_number %>"><%= v[data.first] %></a></td>
+                                        <% elsif index >= 2 && col.to_s == "match_number" %>
+                                            <td class="sticky-col-2"><a href="/competitions/<%= match.comp_id %>/teams/<%= match.team_number %>"><%= v[data.first] %></a></td>
                                         <% elsif index >= 2 %>
                                             <td><%= v[data.first].to_s.gsub(' ', '&nbsp;') %></td>
                                         <% end %>
