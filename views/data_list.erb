@@ -5,9 +5,9 @@
                 <tr>
                     <% Match.columns[2..-1].each.with_index do |col, index| %>
                         <% if col.to_s == "team_number" %>
-                            <th class="sticky-col" scope="col"><a href="?sort=<%= col %>"><%= col.to_s.gsub('_', '&nbsp;').split.map(&:capitalize).join(' ') %></a></th>
+                            <th class="stick-head" scope="col"><a href="?sort=<%= col %>"><%= col.to_s.gsub('_', '&nbsp;').split.map(&:capitalize).join(' ') %></a></th>
                         <% elsif col.to_s == "match_number" %>
-                            <th class="sticky-col-2" scope="col"><a href="?sort=<%= col %>"><%= col.to_s.gsub('_', '&nbsp;').split.map(&:capitalize).join(' ') %></a></th>
+                            <th class="stick-head-2" scope="col"><a href="?sort=<%= col %>"><%= col.to_s.gsub('_', '&nbsp;').split.map(&:capitalize).join(' ') %></a></th>
                         <% else %>
                             <th scope="col"><a href="?sort=<%= col %>"><%= col.to_s.gsub('_', '&nbsp;').split.map(&:capitalize).join(' ') %></a></th>
                         <% end %>
