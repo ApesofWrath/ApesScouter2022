@@ -49,7 +49,7 @@
             </tr>
           </thead>
           <tbody>
-            <% DB.fetch("SELECT team_number, COUNT(team_number) FROM matches WHERE (hangar='Traverse' OR hangar='High') GROUP BY team_number ORDER BY 2 DESC;") do |row| %>    
+            <% DB.fetch("SELECT team_number, COUNT(team_number) FROM matches WHERE comp_id = ? AND (hangar='Traverse' OR hangar='High') GROUP BY team_number ORDER BY 2 DESC;", @competition.id) do |row| %>    
               <tr>
                 <th><a href="/competitions/<%= @competition.id %>/teams/<%= row[:team_number] %>"><%= row[:team_number] %></a></th>
                 <td><%= row[:"COUNT(team_number)"] %></td>
@@ -70,7 +70,7 @@
           </thead>
           <tbody>
           <!-- auton top & bottom, tele top & bottom, taxi, climb -->
-          <% DB.fetch("SELECT team_number, AVG(tele_upper)*2 + AVG(tele_lower) + AVG(auton_lower)*2 + AVG(auton_upper)*4 + AVG(case when taxi='Yes' then 2 else 0 end) + AVG(case when hangar='Low' then 4 else 0 end) + AVG(case when hangar='Mid' then 6 else 0 end) + AVG(case when hangar='High' then 10 else 0 end) + AVG(case when hangar='Traverse' then 15 else 0 end) AS points FROM matches GROUP BY team_number ORDER BY 2 DESC;") do |row| %> 
+          <% DB.fetch("SELECT team_number, AVG(tele_upper)*2 + AVG(tele_lower) + AVG(auton_lower)*2 + AVG(auton_upper)*4 + AVG(case when taxi='Yes' then 2 else 0 end) + AVG(case when hangar='Low' then 4 else 0 end) + AVG(case when hangar='Mid' then 6 else 0 end) + AVG(case when hangar='High' then 10 else 0 end) + AVG(case when hangar='Traverse' then 15 else 0 end) AS points FROM matches WHERE comp_id = ? GROUP BY team_number ORDER BY 2 DESC;", @competition.id) do |row| %> 
               <tr>
                 <th><a href="/competitions/<%= @competition.id %>/teams/<%= row[:team_number] %>"><%= row[:team_number] %></a></th>
                 <td><%= row[:"points"].to_f %></td>
