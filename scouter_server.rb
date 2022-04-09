@@ -74,6 +74,11 @@ module ApesScouter
             erb :competition
         end
 
+        # Select compt for stats
+        get '/stats' do
+            erb :stats_select
+        end
+
         # Competition Stats
         get '/competitions/:id/stats' do
             @competition = Competition[params[:id]]
